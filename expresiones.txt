@@ -1,0 +1,50 @@
+Exp 1
+Preorder traversal: ^ / 22 3 2 
+Inorder traversal: 22 / 3 ^ 2 
+Postorder traversal: 22 3 / 2 ^ 
+Evaluacion del arbol: 53.8
+│     ┌──── (2)
+└──── (^)=53.8
+      │     ┌──── (3)
+      └──── (/)=7.3
+            └──── (22)
+
+Exp 2
+Preorder traversal: + / 2 3 * 2 4 
+Inorder traversal: 2 / 3 + 2 * 4 
+Postorder traversal: 2 3 / 2 4 * + 
+Evaluacion del arbol: 8.7
+│           ┌──── (4)
+│     ┌──── (*)=8
+│     │     └──── (2)
+└──── (+)=8.7
+      │     ┌──── (3)
+      └──── (/)=0.7
+            └──── (2)
+
+Exp 3
+Preorder traversal: * 2 + - 3 6 4 
+Inorder traversal: 2 * 3 - 6 + 4 
+Postorder traversal: 2 3 6 - 4 + * 
+Evaluacion del arbol: 2
+│           ┌──── (4)
+│     ┌──── (+)=1
+│     │     │     ┌──── (6)
+│     │     └──── (-)=-3
+│     │           └──── (3)
+└──── (*)=2
+      └──── (2)
+
+Exp 4
+Preorder traversal: + * 9 + 5 2 3 
+Inorder traversal: 9 * 5 + 2 + 3 
+Postorder traversal: 9 5 2 + * 3 + 
+Evaluacion del arbol: 66
+│     ┌──── (3)
+└──── (+)=66
+      │           ┌──── (2)
+      │     ┌──── (+)=7
+      │     │     └──── (5)
+      └──── (*)=63
+            └──── (9)
+
