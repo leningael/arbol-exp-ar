@@ -1,8 +1,10 @@
 package Modelo;
 
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 
 public class ExpTree<T extends Comparable<T>>{
+    DecimalFormat frmt = new DecimalFormat("#.#");
     Node<T> root;
 
     public ExpTree(){
@@ -54,5 +56,52 @@ public class ExpTree<T extends Comparable<T>>{
     }
     public Node<T> getRoot() {
         return root;
+    }
+
+    public StringBuilder imprimirArbol(StringBuilder prefix, boolean isTail, StringBuilder sb, Node<T> auxRoot) {
+        if(auxRoot.getRightChild()!=null) {
+            if(auxRoot==root){
+                imprimirArbol(new StringBuilder().append(prefix).append(" "), false, sb, auxRoot.getRightChild()); 
+            }else{
+                if(isTail){
+                    imprimirArbol(new StringBuilder().append(prefix).append("│     "), false, sb, auxRoot.getRightChild());
+                }else{
+                    imprimirArbol(new StringBuilder().append(prefix).append("      "), false, sb, auxRoot.getRightChild());
+                }
+            }
+        }
+        if(Funciones.isNumeric(String.valueOf(auxRoot.getData()))){
+            if(isTail){
+                sb.append(prefix).append("└────").append("("+auxRoot.getData().toString()+")").append("\n");
+            }else{
+                sb.append(prefix).append("┌────").append("("+auxRoot.getData().toString()+")").append("\n");
+            }
+        }else{
+            if(auxRoot==root){
+                sb.append(prefix).append("("+auxRoot.getData().toString()+")="+frmt.format(auxRoot.getEvaluacion())).append("\n");
+            }else{
+                if(isTail){
+                    sb.append(prefix).append("└────").append("("+auxRoot.getData().toString()+")="+frmt.format(auxRoot.getEvaluacion())).append("\n");
+                }else{
+                    sb.append(prefix).append("┌────").append("("+auxRoot.getData().toString()+")="+frmt.format(auxRoot.getEvaluacion())).append("\n");
+                }
+            }
+        }
+        if(auxRoot.getLeftChild()!=null) {
+            if(auxRoot==root){
+                imprimirArbol(new StringBuilder().append(prefix).append(" "), true, sb, auxRoot.getLeftChild());
+            }else{
+                if(isTail){
+                    imprimirArbol(new StringBuilder().append(prefix).append("      "), true, sb, auxRoot.getLeftChild());
+                }else{
+                    imprimirArbol(new StringBuilder().append(prefix).append("│     "), true, sb, auxRoot.getLeftChild());
+                }
+            }
+        }
+        return sb;
+    }
+    
+    public String imprimirArbol() {
+        return imprimirArbol(new StringBuilder(), true, new StringBuilder(), root).toString();
     }
 }

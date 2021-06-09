@@ -33,14 +33,14 @@ public class ArbolExpInfijaApp {
                         String expresion = null;
                         expresion = token.replaceAll(" ", "");
                         String postfija[] = Funciones.infijoAPostfijo(expresion);
-                        //System.out.println(obtenerExpresion(postfija));
+                        //System.out.println(Funciones.obtenerExpresion(postfija));
                         ExpTree<String> expTree = new ExpTree<String>();
                         expTree = construirArbolExp(postfija);
                         expTree.traverse(1, escribir);
                         expTree.traverse(2, escribir);
                         expTree.traverse(3, escribir);
-                        escribir.println("\nEvaluacion del arbol: " + frmt.format(expTree.getRoot().getEvaluacion()));
-                        escribir.println(expTree.getRoot().toString());
+                        escribir.println("\nEvaluacion del arbol: " + frmt.format(expTree.getRoot().getEvaluacion())+"\n");
+                        escribir.println(expTree.imprimirArbol());
                     }               
                 }
             }

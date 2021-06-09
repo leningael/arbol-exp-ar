@@ -1,9 +1,6 @@
 package Modelo;
 
-import java.text.DecimalFormat;
-
 public class Node<T extends Comparable<T>>{
-    DecimalFormat frmt = new DecimalFormat("#.#");
     private T data;
     private Node<T> leftChild;
     private Node<T> rightChild;
@@ -50,24 +47,5 @@ public class Node<T extends Comparable<T>>{
 
     public void setEvaluacion(double evaluacion) {
         this.evaluacion = evaluacion;
-    }
-
-    public StringBuilder toString(StringBuilder prefix, boolean isTail, StringBuilder sb) {
-        if(rightChild!=null) {
-            rightChild.toString(new StringBuilder().append(prefix).append(isTail ? "│     " : "      "), false, sb);
-        }
-        if(Funciones.isNumeric(String.valueOf(data)))
-            sb.append(prefix).append(isTail ? "└──── " : "┌──── ").append("("+data.toString()+")").append("\n");
-        else
-            sb.append(prefix).append(isTail ? "└──── " : "┌──── ").append("("+data.toString()+")="+frmt.format(evaluacion)).append("\n");
-        if(leftChild!=null) {
-            leftChild.toString(new StringBuilder().append(prefix).append(isTail ? "      " : "│     "), true, sb);
-        }
-        return sb;
-    }
-    
-    @Override
-    public String toString() {
-        return this.toString(new StringBuilder(), true, new StringBuilder()).toString();
     }
 }
